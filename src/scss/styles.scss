@@ -5,12 +5,134 @@
  font-family: "Roboto";
  src: url("../fonts/Roboto-Regular.ttf") format("truetype");
 }
+@font-face {
+  font-family: "finalf";
+  src: url("../fonts/Final-Fantasy.ttf");
+}
+@mixin centrage(){
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-h1 {
-  color: brown;
-  font-family: "Roboto", Arial;
+$medium: 600px;
+$large: 1024px;
 
-  &:hover {
-    color: green;
+@mixin medium {
+  @media (min-width: #{$medium}) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (min-width: #{$large}) {
+    @content;
+  }
+}
+
+img {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+}
+header {
+  display: none;
+}
+body {
+  @include centrage();
+
+  .content {
+    @include centrage();
+
+    section {
+      @include centrage();
+    }
+
+    .accueil {
+      height: 95vh;
+      width: 100vw;
+      position:relative;
+      background-color: black;
+      @include large {
+        background-image: url('../img/accueil.png');
+        background-repeat: no-repeat;
+        background-size:cover;
+      }
+
+      div {
+        @include centrage();
+        position: absolute;
+        top:55%;
+
+        h1 {
+          font-size: 30px;
+          font-family: 'finalf';
+          color: white;
+          text-shadow: 0 0 20px gray;
+          @include medium {
+            font-size: 32px;
+          }
+          @include large {
+            font-size: 45px;
+          }
+        }
+        h2 {
+          font-size: 16px;
+          font-family: 'finalf';
+          color: white;
+          text-shadow: 0 0 20px gray;
+          @include medium {
+            font-size: 24px;
+          }
+          @include large {
+            font-size: 37px;
+          }
+        }
+      }
+    }
+
+    .presentation {
+      height: 95vh;
+      width: 100vw;
+      position:relative;
+
+
+      #fond {
+        position: absolute;
+        top: 0px;
+        height:80%;
+        width:100%;
+        background-image: url('../img/sunsmall.png');
+        background-repeat: no-repeat;
+        background-size:cover;
+        @include large {
+          height:100%;
+          background-image: url('../img/sun.png');
+        }
+      }
+
+      #text {
+        background-color: #A4FAFF;
+        text-align:center;
+        z-index: 2;
+        position: absolute;
+        bottom:0%;
+        @include large {
+          background-color: none;
+          bottom:60%;
+          width:40vw;
+          left:3%;
+        }
+
+        p {
+          font-family: 'finalf';
+          font-size: 30px;
+          @include large {
+            font-size: 17px;
+          }
+        }
+      }
+    }
   }
 }
